@@ -12,21 +12,10 @@ import StarIcon from '@material-ui/icons/StarBorder';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
+import { Link as RouterLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}.
-    </Typography>
-  );
-}
+import Copyright from './Copyright';
 
 const useStyles = makeStyles((theme) => ({
   '@global': {
@@ -172,29 +161,41 @@ export default function Pricing() {
             noWrap
             className={classes.toolbarTitle}
           >
-            Company name
+            Home
           </Typography>
           <nav>
             <Link
+              component={RouterLink}
               variant="button"
               color="textPrimary"
-              href="#"
+              to="/files"
+              className={classes.link}
+            >
+              Files
+            </Link>
+            <Link
+              component={RouterLink}
+              variant="button"
+              color="textPrimary"
+              to=""
               className={classes.link}
             >
               Features
             </Link>
             <Link
+              component={RouterLink}
               variant="button"
               color="textPrimary"
-              href="#"
+              to=""
               className={classes.link}
             >
               Enterprise
             </Link>
             <Link
+              component={RouterLink}
               variant="button"
               color="textPrimary"
-              href="#"
+              to=""
               className={classes.link}
             >
               Support
@@ -289,7 +290,6 @@ export default function Pricing() {
           ))}
         </Grid>
       </Container>
-      {/* Footer */}
       <Container maxWidth="md" component="footer" className={classes.footer}>
         <Grid container spacing={4} justify="space-evenly">
           {footers.map((footer) => (
@@ -300,7 +300,12 @@ export default function Pricing() {
               <ul>
                 {footer.description.map((item) => (
                   <li key={item}>
-                    <Link href="#" variant="subtitle1" color="textSecondary">
+                    <Link
+                      component={RouterLink}
+                      to=""
+                      variant="subtitle1"
+                      color="textSecondary"
+                    >
                       {item}
                     </Link>
                   </li>
@@ -309,11 +314,8 @@ export default function Pricing() {
             </Grid>
           ))}
         </Grid>
-        <Box mt={5}>
-          <Copyright />
-        </Box>
       </Container>
-      {/* End footer */}
+      <Copyright />
     </>
   );
 }

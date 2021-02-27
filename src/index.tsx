@@ -6,10 +6,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import theme from './theme';
 
-// let root = document.createElement('div');
-// root.id = "root";
-// document.body.appendChild( root );
-
 ReactDOM.render(
   <Router>
     <ThemeProvider theme={theme}>

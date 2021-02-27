@@ -2,10 +2,10 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { Link } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
+import Copyright from './Copyright';
 
 const useStyles = makeStyles((theme) => ({
   '@global': {
@@ -25,24 +25,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
     textAlign: 'center',
   },
-  footer: {
-    textAlign: 'center',
-    padding: theme.spacing(3, 2),
-    marginTop: 'auto',
-  },
 }));
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="/home">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}.
-    </Typography>
-  );
-}
 
 export default function Pricing() {
   const history = useHistory();
@@ -80,14 +63,7 @@ export default function Pricing() {
           Home
         </Button>
       </Container>
-      <footer className={classes.footer}>
-        <Container maxWidth="sm">
-          <Typography variant="body1">
-            My sticky footer can be found here.
-          </Typography>
-          <Copyright />
-        </Container>
-      </footer>
+      <Copyright />
     </div>
   );
 }
