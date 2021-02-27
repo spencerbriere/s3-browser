@@ -1,0 +1,18 @@
+{
+  "name": "s3-browser",
+  "productName": "S3 Browser",
+  "description": "A simple S3 browser",
+  "version": "0.0.1",
+  "main": "./main.prod.js",
+  "author": {
+    "name": "Spencer Briere",
+    "email": "spencerbriere@gmail.com",
+    "url": "https://spencerbriere.ca"
+  },
+  "scripts": {
+    "electron-rebuild": "node -r ../.erb/scripts/BabelRegister.js ../.erb/scripts/ElectronRebuild.js",
+    "postinstall": "yarn electron-rebuild"
+  },
+  "license": "GPL-3.0 License",
+  "dependencies": {}
+}
