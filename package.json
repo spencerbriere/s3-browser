@@ -235,19 +235,24 @@
     "yarn-deduplicate": "^3.1.0"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.7.0",
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
+    "aws-sdk": "^2.853.0",
+    "axios": "^0.21.1",
     "directory-tree": "^2.2.4",
     "electron-debug": "^3.1.0",
     "electron-log": "^4.2.4",
     "electron-updater": "^4.3.4",
     "history": "^5.0.0",
     "pretty-bytes": "^5.6.0",
+    "progress": "^2.0.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "regenerator-runtime": "^0.13.5",
+    "s3-tree": "^3.1.2",
     "source-map-support": "^0.5.19"
   },
   "devEngines": {

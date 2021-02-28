@@ -11,11 +11,12 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import path from 'path';
-import { app, BrowserWindow, shell } from 'electron';
+import { app, BrowserWindow, shell, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import url from 'url';
 import log from 'electron-log';
-import MenuBuilder from './menu';
+import * as Downloader from './utils/Downloader';
+// import MenuBuilder from './menu';
 
 export default class AppUpdater {
   constructor() {
@@ -75,6 +76,7 @@ const createWindow = async () => {
     icon: getAssetPath('icon.png'),
     webPreferences: {
       nodeIntegration: true,
+      enableRemoteModule: true,
     },
   });
 
@@ -105,14 +107,19 @@ const createWindow = async () => {
     mainWindow = null;
   });
 
-  const menuBuilder = new MenuBuilder(mainWindow);
-  menuBuilder.buildMenu();
+  // const menuBuilder = new MenuBuilder(mainWindow);
+  // menuBuilder.buildMenu();
 
   // Open urls in the user's browser
   mainWindow.webContents.on('new-window', (event, eventUrl) => {
     event.preventDefault();
     shell.openExternal(eventUrl);
   });
+
+  // ipcMain.on('downloadRequest', (event, arg) => {
+  //   console.log('Download Triggered');
+  //   // axios download code here
+  // });
 
   // Remove this if your app does not use auto updates
   // eslint-disable-next-line
@@ -137,4 +144,18 @@ app.on('activate', () => {
   // On macOS it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
   if (mainWindow === null) createWindow();
+});
+
+ipcMain.on('download_file', (event, args) => {
+  let progress = 0;
+
+  function onProgress(total: number, chunkLength: number) {
+    // console.log("Progress 1", progress);
+    progress += chunkLength;
+    event.sender.send('progress', {
+      total,
+      progress,
+    });
+  }
+  Downloader.download(args.url, args.filepath, onProgress);
 });
